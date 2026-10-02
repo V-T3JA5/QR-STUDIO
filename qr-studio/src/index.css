@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 font-body antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-400/40 dark:bg-neutral-600/40 rounded-full;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-panel-light dark:bg-panel-dark rounded-2xl shadow-sm border border-black/5 dark:border-white/5;
+  }
+  .input-base {
+    @apply w-full rounded-lg border border-black/10 dark:border-white/10 bg-transparent px-3 py-2 text-sm
+      focus:outline-none focus:ring-2 focus:ring-accent/50 transition-shadow;
+  }
+  .label-base {
+    @apply text-xs font-medium text-neutral-500 dark:text-neutral-400 mb-1 block;
+  }
+}
