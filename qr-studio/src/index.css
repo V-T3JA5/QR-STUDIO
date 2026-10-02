@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-turq-bright:#1FD9C4; --color-turq-deep:#0C9C8D; --color-lime:#D9F76A;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif; --font-sans:Inter,system-ui,sans-serif;
+}
+html{scroll-behavior:auto} body{@apply bg-neutral-50 text-neutral-900 font-sans antialiased dark:bg-neutral-950 dark:text-neutral-100}
+.field{@apply w-full min-h-11 rounded-lg border border-neutral-300 bg-white px-3 text-sm dark:border-neutral-700 dark:bg-neutral-900 focus-visible:outline-2 focus-visible:outline-turq-deep dark:focus-visible:outline-turq-bright}
+.btn{@apply min-h-11 rounded-lg px-4 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-turq-deep dark:focus-visible:outline-turq-bright}
+.btn-primary{@apply bg-turq-deep text-white hover:bg-[#0a8678] dark:bg-turq-bright dark:text-neutral-950 dark:hover:bg-[#4fe6d5]}
+.btn-ghost{@apply border border-neutral-300 hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800}
+.chip{@apply min-h-11 rounded-lg border px-3 text-sm border-neutral-300 dark:border-neutral-700 aria-pressed:border-turq-deep aria-pressed:bg-turq-deep/10 dark:aria-pressed:border-turq-bright dark:aria-pressed:bg-turq-bright/10}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
