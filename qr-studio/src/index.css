@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 243 236 226;
+  --surface: 255 255 255;
+  --surface-sunken: 232 220 201;
+  --ink-primary: 43 32 23;
+  /* Darkened from the brief's #8A7960 (3.6:1 on canvas) to pass WCAG AA for small text. */
+  --ink-secondary: 111 95 72;
+  --border: 220 207 184;
+  --active-fill: 43 32 23;
+  --active-text: 243 236 226;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 28 23 18;
+  --surface: 42 34 26;
+  --surface-sunken: 36 29 22;
+  --ink-primary: 240 230 214;
+  --ink-secondary: 168 149 121;
+  --border: 58 47 34;
+  --active-fill: 240 230 214;
+  --active-text: 28 23 18;
+  color-scheme: dark;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-canvas font-sans text-ink-primary antialiased;
+    overflow: hidden; /* the workspace layer is its own scroll container */
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--ink-primary));
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: rgb(var(--active-fill));
+    color: rgb(var(--active-text));
+  }
+}
+
+@layer components {
+  .field-input {
+    @apply min-h-11 w-full rounded-md border border-border bg-surface px-3 text-[15px] text-ink-primary placeholder:text-ink-secondary/70;
+  }
+  .field-input[aria-invalid='true'] {
+    @apply border-ink-primary;
+    box-shadow: inset 0 0 0 1px rgb(var(--ink-primary));
+  }
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border bg-surface px-4 text-sm font-medium text-ink-primary transition-colors hover:bg-surface-sunken disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-surface;
+  }
+  .btn-solid {
+    @apply border-active-fill bg-active-fill text-active-text hover:bg-active-fill/90 disabled:hover:bg-active-fill;
+  }
+  .seg-item {
+    @apply inline-flex min-h-11 flex-1 items-center justify-center gap-2 px-3 text-sm font-medium transition-colors;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
